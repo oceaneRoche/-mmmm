@@ -28,8 +28,8 @@ public class Main {
         boolean deconnexionClientDemandee = false ;
         char [] bufferEntree = new char[65535] ;
         String reponse = null ;
-        //Outils outils = new Outils();
-        //ArrayList<Ip_v4> mesInterfaces = outils.getSystemIp();
+        Outils outils = new Outils();
+        ArrayList<Ip_v4> mesInterfaces = outils.getSystemIp();
 
 
         ServerSocket monServeurSocket = new ServerSocket(port) ;
@@ -78,7 +78,7 @@ public class Main {
                     reponse = " BONJOUR";
 
                 } else if (messageRecu.equalsIgnoreCase("you\r\n") || messageRecu.equalsIgnoreCase("whoareyou?\r\n")) {
-                    reponse = "L'adresse du serveur est " + InetAddress.getLocalHost() +" et le port est : " + monServeurSocket.getLocalPort();
+                    reponse = "L'adresse du serveur est " + InetAddress.getLocalHost().getHostAddress() +" et le port est : " + monServeurSocket.getLocalPort();
 
                 } else if (messageRecu.equalsIgnoreCase("me\r\n") ||messageRecu.equalsIgnoreCase("whoami?\r\n")){
                     reponse = " L'adresse du client " + socketDuClient.getInetAddress() +" et le port est : " + socketDuClient.getPort();
